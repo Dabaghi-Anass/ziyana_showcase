@@ -1,20 +1,25 @@
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { CaftansPage } from './pages/caftans';
 import { HomePage } from './pages/home';
 
 function App() {
   return (
     <>
       <Router>
-        {/* <nav style={{ display: 'flex', gap: '10px' }}>
-          <Link to='/'>Home</Link>
-          <Link to='/about'>About</Link>
-          <Link to='/contact'>Contact</Link>
-        </nav> */}
-
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-        </Routes>
+        <nav className='nav-bar'>
+          <ul>
+            <Link to='/'>Acceuil</Link>
+            <Link to='/caftans'>Caftans</Link>
+            <Link to='/contact'>Contact</Link>
+          </ul>
+        </nav>
+        <main className="container">
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/caftans' element={<CaftansPage />} />
+          </Routes>
+        </main>
       </Router>
     </>
   );

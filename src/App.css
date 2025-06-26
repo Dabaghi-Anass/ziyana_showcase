@@ -1,4 +1,73 @@
+:root {
+	--clr-primary: #790374;
+}
+
 html,
 body {
-  height: 100%;
+	position: relative;
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	isolation: isolate;
+	&::before {
+		content: "";
+		width: 100vw;
+		height: 100vh;
+		z-index: -1;
+		position: absolute;
+		background: url(src/assets/images/bg-mobra.jpg);
+	}
+}
+*,
+*::before,
+*::after {
+	margin: 0;
+	box-sizing: border-box;
+	/* border: 1px solid yellow; */
+}
+.landing {
+	width: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+}
+.nav-bar {
+	/* background: black; */
+	padding: 0.5rem 1rem;
+	color: white;
+	ul {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+	a {
+		text-decoration: none;
+		color: white;
+	}
+	a:hover {
+		color: gold;
+	}
+}
+/* 
+.container {
+	max-width: 1200px;
+	width: 100%;
+	height: 100%;
+} */
+.caftans-page {
+	height: 100vh;
+	overflow-y: scroll;
+	scroll-snap-type: y mandatory;
+}
+
+.caftan-section {
+	height: 100vh;
+	display: flex;
+	gap: 1rem;
+	color: white;
+	background: linear-gradient(rgba(0, 0, 0, 0.623), rgba(0, 0, 0, 0.767));
+	scroll-snap-align: start;
+	img {
+		height: 100%;
+		max-width: 50vw;
+	}
 }
