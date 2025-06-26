@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Caftan Chatbot</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f4f4;
+        }
+        .chatbox, .products {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .product {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            align-items: center;
+        }
+        .product img {
+            width: 120px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur Caftan Chatbot</h1>
+
+    <!-- === Chatbot Form === -->
+    <div class="chatbox">
+        <form method="post" action="/Post/chatbot">
+            <label for="message">Posez votre question :</label><br>
+            <input type="text" id="message" name="message" value="{{ user_input or '' }}" required style="width: 80%;">
+            <button type="submit">Envoyer</button>
+        </form>
+
+        {% if response %}
+            <div class="bot-response">
+                <h3>Réponse du bot :</h3>
+                <p>{{ response }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- === Produits === -->
+    <div class="products">
+        <h2>Produits (Page {{ page }})</h2>
+        {% if produits %}
+            {% for produit in produits %}
+                <div class="product">
+                    {% if produit.image_url %}
+                        <img src="{{ produit.image_url }}" alt="{{ produit.name or 'Caftan' }}">
+                    {% else %}
+                        <img src="/static/default.jpg" alt="Image non disponible">
+                    {% endif %}
+                    <div class="details">
+                        <strong>{{ produit["product_id"] }}</strong><br>
+                        {% if produit.get("name") %} Nom : {{ produit["name"] }}<br> {% endif %}
+                        {% if produit.get("description") %} Description : {{ produit["description"] }}<br> {% endif %}
+                        {% if produit.get("price") %} Prix : {{ produit["price"] }} MAD<br> {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun produit trouvé.</p>
+        {% endif %}
+    </div>
+
+    <!-- === Pagination === -->
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/Get/Caftan?page={{ page - 1 }}">← Page précédente</a>
+        {% endif %}
+        <a href="/Get/Caftan?page={{ page + 1 }}">Page suivante →</a>
+    </div>
+</body>
+</html>
