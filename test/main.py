@@ -10,7 +10,7 @@ app = FastAPI()
 
 # === Configurations ===
 # OpenRouter API
-API_KEY = "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"
+API_KEY = "anass"
 MODEL = "openai/o4-mini-high"
 
 # MongoDB

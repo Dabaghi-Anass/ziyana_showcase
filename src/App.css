@@ -1,51 +1,60 @@
 :root {
-	--clr-primary: #790374;
+  --clr-primary: #3f003c;
+  --bg-purple: rgb(12, 0, 29);
 }
 
 html,
 body {
-	position: relative;
-	height: 100%;
-	margin: 0;
-	overflow: hidden;
-	isolation: isolate;
-	&::before {
-		content: "";
-		width: 100vw;
-		height: 100vh;
-		z-index: -1;
-		position: absolute;
-		background: url(src/assets/images/bg-mobra.jpg);
-	}
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg-purple);
+  &::before {
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    position: absolute;
+    background: url(src/assets/images/bg-mobra.jpg);
+    opacity: 0.2;
+    filter: brightness(0.8);
+    background-size: 100%;
+  }
 }
 *,
 *::before,
 *::after {
-	margin: 0;
-	box-sizing: border-box;
-	/* border: 1px solid yellow; */
+  margin: 0;
+  box-sizing: border-box;
+  /* border: 1px solid yellow; */
 }
 .landing {
-	width: 100%;
-	display: flex;
-	flex-direction: row-reverse;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
 }
 .nav-bar {
-	/* background: black; */
-	padding: 0.5rem 1rem;
-	color: white;
-	ul {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-	a {
-		text-decoration: none;
-		color: white;
-	}
-	a:hover {
-		color: gold;
-	}
+  /* background: black; */
+  padding: 0.5rem 1rem;
+  color: white;
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    color: gold;
+  }
 }
 /* 
 .container {
@@ -54,20 +63,39 @@ body {
 	height: 100%;
 } */
 .caftans-page {
-	height: 100vh;
-	overflow-y: scroll;
-	scroll-snap-type: y mandatory;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 .caftan-section {
-	height: 100vh;
-	display: flex;
-	gap: 1rem;
-	color: white;
-	background: linear-gradient(rgba(0, 0, 0, 0.623), rgba(0, 0, 0, 0.767));
-	scroll-snap-align: start;
-	img {
-		height: 100%;
-		max-width: 50vw;
-	}
+  height: 100vh;
+  display: flex;
+  gap: 1rem;
+  color: white;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.623), rgba(0, 0, 0, 0.767)); */
+  scroll-snap-align: start;
+  img {
+    height: 100%;
+    max-width: 50vw;
+  }
+}
+
+.ambient-light {
+  position: fixed;
+  top: -50px;
+  right: 0;
+  height: 120%;
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 10%,
+    rgba(255, 166, 0, 0.5),
+    rgba(255, 166, 0, 0.3),
+    rgba(255, 166, 0, 0.1),
+    rgb(255, 208, 0, 0) 100%
+  );
+  filter: blur(100px) opacity(0.5);
+  border-radius: 100%;
+  z-index: -1;
 }
