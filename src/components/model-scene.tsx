@@ -11,6 +11,7 @@ type Props = {
   zoom?: number;
   whiteLightIntensity?: number;
   yellowLightIntensity?: number;
+  style?: React.CSSProperties;
   onModelLoaded?: (model: THREE.Object3D) => void;
 };
 export function ThreeGLTF3DModel({
@@ -21,6 +22,7 @@ export function ThreeGLTF3DModel({
   zoom = 1.0,
   whiteLightIntensity = 0.8,
   yellowLightIntensity = 0.5,
+  style,
   onModelLoaded,
   ...rest
 }: Props) {
@@ -106,6 +108,7 @@ export function ThreeGLTF3DModel({
   }, []);
   return (
     <canvas
+      style={style}
       id={uniqueId}
       width={canvasWidth}
       height={canvasHeight}
