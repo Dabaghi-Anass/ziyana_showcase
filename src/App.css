@@ -39,11 +39,13 @@ body {
   overflow-x: hidden;
   isolation: isolate;
   background: var(--bg-purple);
+  padding-inline: 3rem;
   font-family: 'primary', sans-serif;
   &::before {
     content: '';
-    width: 100vw;
+    width: 120vw;
     height: 100vh;
+    left: -3rem;
     z-index: -1;
     position: fixed;
     background: url(src/assets/images/bg-mobra.jpg);
@@ -211,4 +213,55 @@ body {
 
 section.stories {
   color: white;
+  display: flex;
+  direction: rtl;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+}
+
+section.stories > div {
+  width: 50%;
+  max-width: 50%;
+  padding: 2rem;
+
+  .header {
+    font-size: var(--font-xxl);
+    text-decoration: underline;
+    color: goldenrod;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 12px;
+    padding-inline: 0;
+  }
+  .hero {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-text {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+  }
+  .hero-text > p {
+    font-size: var(--font-lg);
+  }
+  section.stories {
+    margin-top: 12rem;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
 }
