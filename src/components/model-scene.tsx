@@ -9,6 +9,9 @@ type Props = {
   modelPath?: string;
   enableControls?: boolean;
   zoom?: number;
+  whiteLightIntensity?: number;
+  yellowLightIntensity?: number;
+  onModelLoaded?: (model: THREE.Object3D) => void;
 };
 export function ThreeGLTF3DModel({
   width,
@@ -16,6 +19,10 @@ export function ThreeGLTF3DModel({
   modelPath,
   enableControls = true,
   zoom = 1.0,
+  whiteLightIntensity = 0.8,
+  yellowLightIntensity = 0.5,
+  onModelLoaded,
+  ...rest
 }: Props) {
   const { current: canvasWidth } = useRef(
     width ? width : window.innerWidth * 0.6
@@ -60,19 +67,16 @@ export function ThreeGLTF3DModel({
       (gltf: any) => {
         scene.add(gltf.scene);
         gltf.scene.traverse((child: any) => {
-          console.log(`Child name: ${child.name}, Type: ${child.type}`);
           if (child.name === 'Scene' && controls) {
             child.position.set(0, -0.5, 0);
           }
           if (child.isLight && typeof child.intensity === 'number') {
             if (child.name === 'Light001') {
-              child.intensity = 1500;
+              child.intensity = yellowLightIntensity;
             } else {
-              child.intensity = 300;
+              child.intensity = whiteLightIntensity;
             }
-            console.log(
-              `Light found: ${child.name}, Intensity: ${child.intensity}`
-            );
+            onModelLoaded?.(gltf.scene);
           }
         });
         camera.lookAt(new THREE.Vector3(0, 1, 0));
@@ -105,9 +109,7 @@ export function ThreeGLTF3DModel({
       id={uniqueId}
       width={canvasWidth}
       height={canvasHeight}
-      style={{
-        border: '1px solid red',
-      }}
+      {...rest}
     ></canvas>
   );
 }
