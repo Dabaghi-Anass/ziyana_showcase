@@ -1,26 +1,51 @@
 :root {
   --clr-primary: #3f003c;
   --bg-purple: rgb(12, 0, 29);
+  --font-sm: clamp(0.875rem, 1vw, 1rem);
+  --font-md: clamp(1rem, 2vw, 1.25rem);
+  --font-lg: clamp(1.25rem, 3vw, 1.5rem);
+  --font-xl: clamp(1.5rem, 4vw, 2rem);
+  --font-xxl: clamp(2rem, 6vw, 3rem);
+}
+@font-face {
+  font-family: 'secondary';
+  src: url('/src/assets/fonts/New-Icon-Script.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'primary';
+  src: url('src/assets/fonts/OpenSans-VariableFont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 html,
 body {
   width: 100%;
   height: 100%;
   margin: 0;
 }
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
 
 body {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   isolation: isolate;
   background: var(--bg-purple);
+  font-family: 'primary', sans-serif;
   &::before {
     content: '';
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    position: absolute;
+    position: fixed;
     background: url(src/assets/images/bg-mobra.jpg);
     opacity: 0.2;
     filter: brightness(0.8);
@@ -34,10 +59,16 @@ body {
   box-sizing: border-box;
   /* border: 1px solid yellow; */
 }
-.landing {
+:has(.hero) {
+  height: 100%;
+}
+.hero {
   width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 }
 .nav-bar {
   /* background: black; */
@@ -98,4 +129,86 @@ body {
   filter: blur(100px) opacity(0.5);
   border-radius: 100%;
   z-index: -1;
+}
+
+.app-logo {
+  font-size: 2rem;
+  font-family: 'secondary';
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
+}
+.app-logo span {
+  margin-right: 0.8rem;
+  font-weight: bold;
+  color: goldenrod;
+  -webkit-text-stroke: 1px goldenrod;
+  text-stroke: 1px goldenrod;
+}
+
+.hero-text {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem 3rem;
+  direction: rtl;
+  height: 100%;
+  width: 50%;
+  max-width: 50%;
+}
+
+.hero-text > p {
+  font-size: var(--font-xxl);
+  line-height: 1.5;
+  color: white;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  background: rgba(63, 0, 60, 0.2);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(120deg, gold 40%, #3f003c 100%);
+  border-radius: 8px;
+  position: relative;
+}
+
+::-webkit-scrollbar-thumb:before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+}
+
+@keyframes scroll-icon-move {
+  0% {
+    top: 10px;
+    opacity: 1;
+  }
+  50% {
+    top: 40px;
+    opacity: 0.7;
+  }
+  100% {
+    top: 10px;
+    opacity: 1;
+  }
+}
+
+.full {
+  width: 100%;
+  height: 100%;
+}
+
+section.stories {
+  color: white;
 }
