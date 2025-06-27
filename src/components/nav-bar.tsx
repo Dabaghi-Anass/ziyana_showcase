@@ -17,7 +17,10 @@ export function NavBar() {
           <Link to='/story'>قصة القفطان</Link>
         </li>
         <li className={isActive('/showroom') ? 'active' : ''}>
-          <Link to='/showroom'>غرفة العرض</Link>
+          <Link to='/showroom'>متحف القفاطن</Link>
+        </li>
+        <li className={isActive('/showroom') ? 'active' : ''}>
+          <Link to='/showroom/caftans'>القفاطن</Link>
         </li>
       </ul>
       <AppLogo />
