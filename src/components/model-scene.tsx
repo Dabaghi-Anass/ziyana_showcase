@@ -59,6 +59,12 @@ export function ThreeGLTF3DModel({
       controls.enableZoom = false;
     }
 
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffe066, 1);
+    directionalLight.position.set(5, 10, 7.5);
+    scene.add(directionalLight);
     camera.zoom = zoom;
     camera.position.set(5, 2, 2);
     camera.updateProjectionMatrix();

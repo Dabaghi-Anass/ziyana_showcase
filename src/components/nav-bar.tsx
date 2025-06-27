@@ -13,12 +13,15 @@ export function NavBar() {
         <li className={isActive('/') ? 'active' : ''}>
           <Link to='/'>الرئيسية</Link>
         </li>
+        <li className={isActive('/story') ? 'active' : ''}>
+          <Link to='/story'>قصة القفطان</Link>
+        </li>
         <li className={isActive('/showroom') ? 'active' : ''}>
           <Link to='/showroom'>غرفة العرض</Link>
         </li>
       </ul>
       <AppLogo />
-      <Link to='/upload' className='upload-btn'>
+      <Link to='/upload' className='btn'>
         ارفع تصميمك
       </Link>
     </nav>
