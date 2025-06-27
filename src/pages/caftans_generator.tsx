@@ -64,6 +64,9 @@ const VoiceCaftanGenerator = () => {
   const [caftanName, setCaftanName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [caftanImage, setCaftanImage] = useState<string | undefined>(undefined);
+  const [userDescription, setUserDescription] = useState<string | undefined>(
+    undefined
+  );
   const [error, setError] = useState('');
 
   const mediaRecorderRef = useRef(null);
@@ -157,6 +160,7 @@ const VoiceCaftanGenerator = () => {
 
       const im = c.images[Math.floor(Math.random() * c.images.length)];
       setCaftanImage(im);
+      setUserDescription(descption);
     } catch (err) {
       setError('خطأ في توليد اسم القفطان: ' + err.message);
     } finally {
@@ -694,17 +698,30 @@ const VoiceCaftanGenerator = () => {
               border: '1px solid rgba(255, 215, 0, 0.3)',
             }}
           >
-            <p
-              style={{
-                color: '#E6E6FA',
-                fontSize: '14px',
-                margin: '0',
-                lineHeight: '1.4',
-              }}
-            >
-              يتم إنشاء التصميم تلقائياً باستخدام الذكاء الاصطناعي بناءً على
-              تفضيلاتك ووصفك الصوتي
-            </p>
+            {userDescription ? (
+              <p
+                style={{
+                  color: '#E6E6FA',
+                  fontSize: '1.5rem',
+                  margin: '0',
+                  lineHeight: '1.4',
+                }}
+              >
+                {userDescription}
+              </p>
+            ) : (
+              <p
+                style={{
+                  color: '#E6E6FA',
+                  fontSize: '14px',
+                  margin: '0',
+                  lineHeight: '1.4',
+                }}
+              >
+                يتم إنشاء التصميم تلقائياً باستخدام الذكاء الاصطناعي بناءً على
+                تفضيلاتك ووصفك الصوتي
+              </p>
+            )}
           </div>
         </div>
       </div>
