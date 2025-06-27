@@ -6,6 +6,7 @@ import { CaftansPage } from './pages/caftans';
 import { HomePage } from './pages/home';
 import { ShowRoom } from './pages/showroom';
 import { StoryPage } from './pages/story';
+import VoiceCaftanGenerator from './pages/caftans_generator';
 // import { FloatingChatbot } from './components/chat-bot';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path='/caftans' element={<CaftansPage />} />
             <Route path='/showroom' element={<ShowRoom />}></Route>
             <Route path='/add-caftan' element={<AddCaftan />} />
+            <Route path='/customize' element={<VoiceCaftanGenerator />} />
           </Routes>
         </main>
       </Router>

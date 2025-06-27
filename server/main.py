@@ -3,6 +3,8 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
+import google.generativeai as genai
+from google.generativeai import types
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
@@ -17,8 +19,8 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-
 app = FastAPI(title="Caftan API", description="API for managing caftans and reviews", version="1.0.0")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -26,10 +28,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# === Configurations ===
-# OpenRouter API
+
 API_KEY = os.getenv("API_KEY")
-MODEL = os.getenv("MODEL", "openai/o4-mini-high")
+sys_instructions = ''
+genai.configure(api_key=API_KEY)
+model = genai.GenerativeModel('gemini-1.5-flash')
+def generate(prompt: str):
+    prompt = sys_instructions+prompt
+    response = model.generate_content(prompt)
+    return response.text.strip()
 
 # MongoDB
 MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
@@ -283,7 +290,6 @@ async def delete_caftan(caftan_id: str):
     except Exception as e:
         raise HTTPException(status_code=400, detail="Invalid caftan ID")
 
-# === Image Upload ===
 
 @app.post("/api/upload-image")
 async def upload_image(file: UploadFile = File(...)):
@@ -468,71 +474,31 @@ async def delete_review(review_id: str):
         raise
     except Exception as e:
         raise HTTPException(status_code=400, detail="Invalid review ID")
-
-# === LLM Chatbot ===
-
+    
 @app.post("/api/chatbot")
 async def chatbot(chat: ChatMessage):
-    """Chat with LLM"""
-    payload = {
-        "model": MODEL,
-        "messages": [
-            {"role": "user", "content": chat.message}
-        ],
-        "max_tokens": 300
-    }
-    
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json",
-        "HTTP-Referer": "https://your-site.com",
-        "X-Title": "FastAPI-Chatbot"
-    }
-    
     try:
-        response = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions", 
-            headers=headers, 
-            data=json.dumps(payload),
-            timeout=30
-        )
-        
-        if response.status_code == 200:
-            result = response.json()
-            bot_reply = result.get("choices", [{}])[0].get("message", {}).get("content", "No response received")
-        else:
-            bot_reply = f"API Error: {response.status_code} - {response.text}"
-        
+        print(f"Received message: {chat.message}")
+        res = generate(chat.message)
         return {
             "success": True,
             "data": {
                 "user_message": chat.message,
-                "bot_response": bot_reply,
-                "timestamp": datetime.utcnow()
-            }
-        }
-    except requests.exceptions.Timeout:
-        return {
-            "success": False,
-            "error": "Request timeout - please try again",
-            "data": {
-                "user_message": chat.message,
-                "bot_response": None,
-                "timestamp": datetime.utcnow()
-            }
-        }
-    except Exception as e:
-        return {
-            "success": False,
-            "error": f"Error communicating with LLM: {str(e)}",
-            "data": {
-                "user_message": chat.message,
-                "bot_response": None,
+                "bot_response": res,
                 "timestamp": datetime.utcnow()
             }
         }
 
-# === Statistics ===
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Gemini Error: {str(e)}",
+            "data": {
+                "user_message": chat.message,
+                "bot_response": None,
+                "timestamp": datetime.utcnow()
+            }
+        }
 
 @app.get("/api/statistics")
 async def get_statistics():

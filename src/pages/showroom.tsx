@@ -65,12 +65,13 @@ export function ShowRoom() {
                       </div>
                     )}
                   </div>
-                  <Link
+                  <span></span>
+                  {/* <Link
                     to={`/caftans#${getCaftanHash(caftan.caftanName)}`}
                     className='btn'
-                  >
+                    >
                     المزيد من الصور
-                  </Link>
+                    </Link> */}
                 </div>
               </>
             ) : (
@@ -100,12 +101,13 @@ export function ShowRoom() {
                       </div>
                     )}
                   </div>
-                  <Link
+                  {/* <Link
                     to={`/caftans#${getCaftanHash(caftan.caftanName)}`}
                     className='btn'
-                  >
+                    >
                     المزيد من الصور
-                  </Link>
+                  </Link> */}
+                  <span></span>
                 </div>
 
                 <img

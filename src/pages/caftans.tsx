@@ -190,9 +190,6 @@ export function CaftansPage() {
                       className='card-image'
                       loading='lazy'
                     />
-                    <div className='image-overlay'>
-                      <button className='view-btn'>عرض التفاصيل</button>
-                    </div>
                   </div>
 
                   <div className='card-content'>
@@ -218,12 +215,14 @@ export function CaftansPage() {
                         <div className='publish-date'>
                           <span className='date-icon'>📅</span>
                           <div className='date-text'>
-                            <span style={{
-                              margin: 10
-                            }}>
+                            <span
+                              style={{
+                                margin: 10,
+                              }}
+                            >
                               {formatDate(caftan.publishedAt)}
                             </span>
-                            {formatDate(caftan.publishedAt, "en-GB")}
+                            {formatDate(caftan.publishedAt, 'en-GB')}
                           </div>
                         </div>
                       )}

@@ -22,6 +22,9 @@ export function NavBar() {
         <li className={isActive('/caftans') ? 'active' : ''}>
           <Link to='/caftans'>القفاطن</Link>
         </li>
+        <li className={isActive('/customize') ? 'active' : ''}>
+          <Link to='/customize'>قفطان على ذوقي</Link>
+        </li>
       </ul>
       <AppLogo />
       <Link to='/add-caftan' className='btn'>
