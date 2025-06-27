@@ -8,7 +8,7 @@
     "extra_image": "قفطان_النطع_الفاسي.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "قفطان الخريب الفاسي",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "فاس",
@@ -16,7 +16,7 @@
     "extra_image": "قفطان_الخريب_الفاسي.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c3.png",
     "caftanName": "القفطان الملكي المغربي",
     "caftanPeriod": "معاصر",
     "cityOfCaftan": "الرباط (الأسرة الملكية)",
@@ -24,7 +24,7 @@
     "extra_image": "القفطان_الملكي.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c4.png",
     "caftanName": "قفطان حاج عمر التطواني",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "تطوان",
@@ -32,7 +32,7 @@
     "extra_image": "قفطان_حاج_عمر.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c5.png",
     "caftanName": "قفطان البهجة الفاسي",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "فاس ومراكش",
@@ -40,7 +40,7 @@
     "extra_image": "قفطان_البهجة.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "قفطان دنياجات الفاسي",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "فاس",
@@ -48,7 +48,7 @@
     "extra_image": "قفطان_دنياجات.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "قفطان جوهرة",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "عام - المغرب",
@@ -56,7 +56,7 @@
     "extra_image": "قفطان_جوهرة.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "قفطان الحناء",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "شمال المغرب - الريف",
@@ -64,7 +64,7 @@
     "extra_image": "قفطان_الحناء.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "قفطان اسملال (أشايت)",
     "caftanPeriod": "تقليدي أمازيغي",
     "cityOfCaftan": "سوس",
@@ -72,7 +72,7 @@
     "extra_image": "قفطان_اسملال.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "القفطان الرباطي القديم",
     "caftanPeriod": "تقليدي قديم",
     "cityOfCaftan": "الرباط",
@@ -80,7 +80,7 @@
     "extra_image": "القفطان_الرباطي.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "القفطان التطواني القديم",
     "caftanPeriod": "من أقدم القفاطين المغربية",
     "cityOfCaftan": "طنجة وتطوان",
@@ -88,7 +88,7 @@
     "extra_image": "القفطان_التطواني_القديم.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "القفطان السلاوي",
     "caftanPeriod": "تقليدي",
     "cityOfCaftan": "سلا",
@@ -96,7 +96,7 @@
     "extra_image": "القفطان_السلاوي.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "القفطان المغربي العصري",
     "caftanPeriod": "معاصر",
     "cityOfCaftan": "عام - المغرب",
@@ -104,7 +104,7 @@
     "extra_image": "القفطان_العصري.jpg"
   },
   {
-    "image_url": "src/assets/images/s1.png",
+    "image_url": "src/assets/images/c2.png",
     "caftanName": "المنصورية",
     "caftanPeriod": "العهد السعدي - القرن 16",
     "cityOfCaftan": "فاس",

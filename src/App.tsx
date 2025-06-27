@@ -5,6 +5,7 @@ import { HomePage } from './pages/home';
 import { NavBar } from './components/nav-bar';
 import { ShowRoom } from './pages/showroom';
 import { StoryPage } from './pages/story';
+import AddCaftan from './pages/add-caftan';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/showroom' element={<ShowRoom />}>
               <Route path='caftans' element={<CaftansPage />} />
             </Route>
+            <Route path='/add-caftan' element={<AddCaftan />} />
           </Routes>
         </main>
       </Router>

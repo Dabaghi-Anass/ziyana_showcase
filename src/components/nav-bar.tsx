@@ -21,7 +21,7 @@ export function NavBar() {
         </li>
       </ul>
       <AppLogo />
-      <Link to='/upload' className='btn'>
+      <Link to='/add-caftan' className='btn'>
         ارفع تصميمك
       </Link>
     </nav>

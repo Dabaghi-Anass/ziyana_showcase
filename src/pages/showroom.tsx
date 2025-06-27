@@ -37,7 +37,7 @@ export function ShowRoom() {
                 <img
                   src={story.image_url}
                   alt={story.caftanName}
-                  className='story-image'
+                  className='story-image fanous'
                 />
                 <div className='story-content'>
                   <div className='story-header'>
@@ -61,7 +61,7 @@ export function ShowRoom() {
                 <img
                   src={story.image_url}
                   alt={story.caftanName}
-                  className='story-image'
+                  className='story-image fanous'
                 />
               </>
             )}

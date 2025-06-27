@@ -27,7 +27,7 @@ export function StoryPage() {
                 <img
                   src={story.image}
                   alt={story.title}
-                  className='story-image'
+                  className='story-image fanous'
                 />
                 <div className='story-content'>
                   <div className='story-header'>
@@ -53,7 +53,7 @@ export function StoryPage() {
                 <img
                   src={story.image}
                   alt={story.title}
-                  className='story-image'
+                  className='story-image fanous'
                 />
               </>
             )}
