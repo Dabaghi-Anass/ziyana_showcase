@@ -1,12 +1,12 @@
-import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
+import { NavBar } from './components/nav-bar';
+import { AddCaftan } from './pages/add-caftan';
 import { CaftansPage } from './pages/caftans';
 import { HomePage } from './pages/home';
-import { NavBar } from './components/nav-bar';
 import { ShowRoom } from './pages/showroom';
 import { StoryPage } from './pages/story';
-import { AddCaftan } from './pages/add-caftan';
-import { FloatingChatbot } from './components/chat-bot';
+// import { FloatingChatbot } from './components/chat-bot';
 
 function App() {
   return (

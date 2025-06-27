@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { createCaftan, uploadImage } from '../api/api';
 import './caftan-form.css';
 type CaftanFormData = {
@@ -9,6 +9,7 @@ type CaftanFormData = {
   caftanCategory: string;
   caftanDescription: string;
   caftanPublisherName: string;
+  publishedAt: string;
   keyWords: string[];
   image_url?: string;
 };
@@ -29,6 +30,7 @@ export function AddCaftan() {
     caftanCategory: '',
     caftanDescription: '',
     caftanPublisherName: '',
+    publishedAt: "",
     keyWords: [],
     image_url: '',
   });
@@ -119,15 +121,14 @@ export function AddCaftan() {
           return prev + 10;
         });
       }, 200);
-
       const response = await uploadImage(selectedFile);
-
+      console.log({ response })
       clearInterval(progressInterval);
       setUploadProgress(100);
 
-      return response.image_url || response.url;
+      return response.data.file_url;
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.log(error)
       alert('حدث خطأ أثناء رفع الصورة');
       return null;
     } finally {
@@ -192,7 +193,7 @@ export function AddCaftan() {
         image_url: imageUrl,
       };
 
-      // Submit to server
+      console.log(caftanData);
       const response = await createCaftan(caftanData);
 
       console.log('Caftan created successfully:', response);
@@ -205,6 +206,7 @@ export function AddCaftan() {
         caftanPublisherName: '',
         keyWords: [],
         image_url: '',
+        publishedAt: ''
       });
       setSelectedFile(null);
       setPreviewUrl('');
@@ -216,8 +218,7 @@ export function AddCaftan() {
     } catch (error) {
       console.error('Error creating caftan:', error);
       alert(
-        `حدث خطأ أثناء إنشاء القفطان: ${
-          error instanceof Error ? error.message : 'خطأ غير معروف'
+        `حدث خطأ أثناء إنشاء القفطان: ${error instanceof Error ? error.message : 'خطأ غير معروف'
         }`
       );
     } finally {
@@ -273,9 +274,8 @@ export function AddCaftan() {
                 onChange={(e) =>
                   handleInputChange('caftanCategory', e.target.value)
                 }
-                className={`form-select ${
-                  errors.caftanCategory ? 'error' : ''
-                }`}
+                className={`form-select ${errors.caftanCategory ? 'error' : ''
+                  }`}
                 dir='rtl'
               >
                 <option value=''>اختر فئة القفطان</option>
@@ -302,9 +302,8 @@ export function AddCaftan() {
                 onChange={(e) =>
                   handleInputChange('caftanPublisherName', e.target.value)
                 }
-                className={`form-input ${
-                  errors.caftanPublisherName ? 'error' : ''
-                }`}
+                className={`form-input ${errors.caftanPublisherName ? 'error' : ''
+                  }`}
                 placeholder='أدخل اسم الناشر'
                 dir='rtl'
               />
@@ -431,9 +430,8 @@ export function AddCaftan() {
                 onChange={(e) =>
                   handleInputChange('caftanDescription', e.target.value)
                 }
-                className={`form-textarea ${
-                  errors.caftanDescription ? 'error' : ''
-                }`}
+                className={`form-textarea ${errors.caftanDescription ? 'error' : ''
+                  }`}
                 placeholder='أدخل وصفاً مفصلاً للقفطان...'
                 rows={5}
                 dir='rtl'

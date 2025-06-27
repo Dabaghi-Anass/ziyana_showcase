@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getCaftans } from '../api/api';
 import './caftans-page.css';
 type Caftan = {
@@ -79,10 +79,10 @@ export function CaftansPage() {
     }
   };
 
-  const formatDate = (dateString?: string) => {
+  const formatDate = (dateString?: string, local = 'ar-SA') => {
     if (!dateString) return '';
     try {
-      return new Date(dateString).toLocaleDateString('ar-SA', {
+      return new Date(dateString).toLocaleDateString(local, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -178,7 +178,7 @@ export function CaftansPage() {
 
             <div className='caftans-grid'>
               {categoryItems.map((caftan, index) => (
-                <div key={caftan._id} className='caftan-card'>
+                <div key={caftan._id + index} className='caftan-card'>
                   <div className='card-image-container'>
                     <img
                       src={
@@ -217,9 +217,14 @@ export function CaftansPage() {
                       {caftan.publishedAt && (
                         <div className='publish-date'>
                           <span className='date-icon'>📅</span>
-                          <span className='date-text'>
-                            {formatDate(caftan.publishedAt)}
-                          </span>
+                          <div className='date-text'>
+                            <span style={{
+                              margin: 10
+                            }}>
+                              {formatDate(caftan.publishedAt)}
+                            </span>
+                            {formatDate(caftan.publishedAt, "en-GB")}
+                          </div>
                         </div>
                       )}
                     </div>
