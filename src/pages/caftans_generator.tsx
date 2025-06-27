@@ -1,4 +1,59 @@
 import React, { useState, useRef } from 'react';
+import { sendChatMessage } from '../api/api';
+const CAFTANS = [
+  {
+    name: 'netaa',
+    index: 0,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fnetaa.jpg?alt=media&token=02308300-0b68-4b77-b625-36a921a24df3',
+    ],
+  },
+  {
+    name: 'khrib',
+    index: 1,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fk1.jpg?alt=media&token=5301cba9-1fcf-4246-96fb-629f7a428b4d',
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fk2.jpg?alt=media&token=5301cba9-1fcf-4246-96fb-629f7a428b4d',
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fk3.jpg?alt=media&token=5301cba9-1fcf-4246-96fb-629f7a428b4d',
+    ],
+  },
+  {
+    name: 'bahja',
+    index: 2,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fb1.jpg?alt=media&token=054f3bff-b466-40f9-948a-478dfa962f71',
+    ],
+  },
+  {
+    name: 'dnyajat',
+    index: 3,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fc6.png?alt=media&token=cab6967d-af33-4d9f-907c-c5a39b5c6731',
+    ],
+  },
+  {
+    name: 'johra',
+    index: 4,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fb1.jpg?alt=media&token=054f3bff-b466-40f9-948a-478dfa962f71',
+    ],
+  },
+  {
+    name: 'hnna',
+    index: 5,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fc8.png?alt=media&token=947864da-a4b2-48d1-bc72-da963fd3b828',
+    ],
+  },
+  {
+    name: 'asemlal',
+    index: 6,
+    images: [
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fas1.jpeg?alt=media&token=0c1f7038-d053-4681-8f8e-6e1f20e7ce40',
+      'https://firebasestorage.googleapis.com/v0/b/anass-dabaghi-portfolio.appspot.com/o/other_images%2Fas2.jpeg?alt=media&token=0c1f7038-d053-4681-8f8e-6e1f20e7ce40',
+    ],
+  },
+];
 
 const VoiceCaftanGenerator = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -8,6 +63,7 @@ const VoiceCaftanGenerator = () => {
   const [occasion, setOccasion] = useState('');
   const [caftanName, setCaftanName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [caftanImage, setCaftanImage] = useState<string | undefined>(undefined);
   const [error, setError] = useState('');
 
   const mediaRecorderRef = useRef(null);
@@ -82,7 +138,25 @@ const VoiceCaftanGenerator = () => {
     setIsLoading(true);
     setError('');
     try {
-      setCaftanName('');
+      const response = (await sendChatMessage({
+        message: JSON.stringify({
+          userDescription: transcript,
+          favoriteColor,
+          stylePreference,
+          occasion,
+        }),
+      })) as any;
+      let [descption, index] = response.data.bot_response
+        .split(',')
+        .map((e) => e.trim());
+      index = +index;
+      const c = CAFTANS.find((c) => c.index === index);
+      if (!c) {
+        throw new Error('لم يتم العثور على القفطان المناسب');
+      }
+
+      const im = c.images[Math.floor(Math.random() * c.images.length)];
+      setCaftanImage(im);
     } catch (err) {
       setError('خطأ في توليد اسم القفطان: ' + err.message);
     } finally {
@@ -144,18 +218,6 @@ const VoiceCaftanGenerator = () => {
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
           }}
         >
-          <h2
-            style={{
-              fontSize: '32px',
-              textAlign: 'center',
-              marginBottom: '30px',
-              color: '#FFD700',
-              fontWeight: 'bold',
-            }}
-          >
-            مولد اسم القفطان بالصوت
-          </h2>
-
           {/* Voice Recording Section */}
           <div style={{ marginBottom: '25px' }}>
             <h3
@@ -541,7 +603,6 @@ const VoiceCaftanGenerator = () => {
           )}
         </div>
 
-        {/* Image Placeholder Section */}
         <div
           style={{
             flex: '0 0 400px',
@@ -579,36 +640,49 @@ const VoiceCaftanGenerator = () => {
               position: 'relative',
             }}
           >
-            <div
-              style={{
-                fontSize: '72px',
-                marginBottom: '20px',
-                opacity: '0.6',
-              }}
-            >
-              👘
-            </div>
-            <p
-              style={{
-                color: '#E6E6FA',
-                fontSize: '18px',
-                margin: '0',
-                textAlign: 'center',
-                lineHeight: '1.4',
-              }}
-            >
-              سيتم عرض تصميم القفطان المخصص هنا
-            </p>
-            <p
-              style={{
-                color: '#FFD700',
-                fontSize: '14px',
-                marginTop: '10px',
-                opacity: '0.8',
-              }}
-            >
-              بناءً على اختياراتك وتسجيلك الصوتي
-            </p>
+            {caftanImage ? (
+              <img
+                src={caftanImage}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            ) : (
+              <>
+                {' '}
+                <div
+                  style={{
+                    fontSize: '72px',
+                    marginBottom: '20px',
+                    opacity: '0.6',
+                  }}
+                >
+                  👘
+                </div>
+                <p
+                  style={{
+                    color: '#E6E6FA',
+                    fontSize: '18px',
+                    margin: '0',
+                    textAlign: 'center',
+                    lineHeight: '1.4',
+                  }}
+                >
+                  سيتم عرض تصميم القفطان المخصص هنا
+                </p>
+                <p
+                  style={{
+                    color: '#FFD700',
+                    fontSize: '14px',
+                    marginTop: '10px',
+                    opacity: '0.8',
+                  }}
+                >
+                  بناءً على اختياراتك وتسجيلك الصوتي
+                </p>
+              </>
+            )}
           </div>
 
           <div
