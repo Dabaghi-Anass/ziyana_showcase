@@ -2,11 +2,21 @@
 :root {
   --clr-primary: #3f003c;
   --bg-purple: rgb(12, 0, 29);
-  --font-sm: clamp(0.875rem, 1vw, 1rem);
-  --font-md: clamp(1rem, 2vw, 1.25rem);
-  --font-lg: clamp(1.25rem, 3vw, 1.5rem);
-  --font-xl: clamp(1.5rem, 4vw, 2rem);
-  --font-xxl: clamp(2rem, 6vw, 3rem);
+  --font-sm: clamp(0.875rem, 3vw, 1rem);
+  --font-md: clamp(1rem, 4vw, 1.25rem);
+  --font-lg: clamp(1.25rem, 5vw, 1.5rem);
+  --font-xl: clamp(1.5rem, 6vw, 2rem);
+  --font-xxl: clamp(2rem, 8vw, 3rem);
+}
+
+@media screen and (min-width: 1300px) {
+  :root {
+    --font-sm: clamp(0.875rem, 3vw, 0.7rem);
+    --font-md: clamp(1rem, 4vw, 1rem);
+    --font-lg: clamp(1.25rem, 5vw, 1.2rem);
+    --font-xl: clamp(1.5rem, 6vw, 1.5rem);
+    --font-xxl: clamp(2rem, 8vw, 2rem);
+  }
 }
 @font-face {
   font-family: 'secondary';
