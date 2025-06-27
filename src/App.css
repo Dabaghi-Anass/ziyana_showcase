@@ -282,6 +282,7 @@ section.stories > div {
   img {
     max-height: 100vh;
     /* width: 50%; */
+    height: 100vh;
   }
 }
 .story-content {
@@ -316,17 +317,7 @@ section.stories > div {
   text-decoration-color: goldenrod;
   margin-block: 2rem;
 }
-.story-header img::before {
-  content: '';
-  position: absolute;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  background: linear-gradient(to right, transparent, goldenrod, transparent);
-  top: -50%;
-  left: -50%;
-  /* z-index: -1; */
-}
+
 .story-description-container {
   height: 60%;
   display: flex;
