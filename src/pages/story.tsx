@@ -36,6 +36,7 @@ export function StoryPage() {
                   <div className='story-description-container'>
                     <p className='story-description'>{story.description}</p>
                   </div>
+                  <span></span>
                 </div>
               </>
             ) : (
