@@ -11,7 +11,6 @@ export function StoryPage() {
     const res = await fetch('src/api/story.json');
     const data = await res.json();
     setStories(data);
-    console.log(data);
   }
   useEffect(() => {
     getData();

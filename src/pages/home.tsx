@@ -32,18 +32,6 @@ export function HomePage() {
       </div>
 
       <section className='full stories'>
-        <ThreeGLTF3DModel
-          width={window.innerHeight * 0.8}
-          height={window.innerHeight * 0.8}
-          modelPath={getModelPath('isence.glb')}
-          whiteLightIntensity={10000}
-          yellowLightIntensity={10000}
-          zoom={1.5}
-          onModelLoaded={(model) => {
-            // model.parent.position.set(-1, -5, -1);
-          }}
-        />
-
         <div>
           <p className='header'>أنواع القفطان المغربي عبر العصور</p>
           <p className='description'>
@@ -67,6 +55,17 @@ export function HomePage() {
             </Link>
           </div>
         </div>
+        <ThreeGLTF3DModel
+          width={window.innerHeight * 0.8}
+          height={window.innerHeight * 0.8}
+          modelPath={getModelPath('isence.glb')}
+          whiteLightIntensity={10000}
+          yellowLightIntensity={10000}
+          zoom={1.5}
+          onModelLoaded={(model) => {
+            // model.parent.position.set(-1, -5, -1);
+          }}
+        />
       </section>
     </main>
   );

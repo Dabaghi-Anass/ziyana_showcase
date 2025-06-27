@@ -21,7 +21,8 @@ app = FastAPI(title="Caftan API", description="API for managing caftans and revi
 
 # === Configurations ===
 # OpenRouter API
-API_KEY = os.getenv("API_KEY", "anass")
+API_KEY = os.getenv("API_KEY")
+print(f"API_KEY: {API_KEY}")  # Debugging line to check if API_KEY is loaded
 MODEL = os.getenv("MODEL", "openai/o4-mini-high")
 
 # MongoDB

@@ -19,8 +19,8 @@ export function NavBar() {
         <li className={isActive('/showroom') ? 'active' : ''}>
           <Link to='/showroom'>متحف القفاطن</Link>
         </li>
-        <li className={isActive('/showroom') ? 'active' : ''}>
-          <Link to='/showroom/caftans'>القفاطن</Link>
+        <li className={isActive('/caftans') ? 'active' : ''}>
+          <Link to='/caftans'>القفاطن</Link>
         </li>
       </ul>
       <AppLogo />

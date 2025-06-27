@@ -5,7 +5,7 @@ import { HomePage } from './pages/home';
 import { NavBar } from './components/nav-bar';
 import { ShowRoom } from './pages/showroom';
 import { StoryPage } from './pages/story';
-import AddCaftan from './pages/add-caftan';
+import { AddCaftan } from './pages/add-caftan';
 
 function App() {
   return (
@@ -16,9 +16,8 @@ function App() {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/story' element={<StoryPage />} />
-            <Route path='/showroom' element={<ShowRoom />}>
-              <Route path='caftans' element={<CaftansPage />} />
-            </Route>
+            <Route path='/caftans' element={<CaftansPage />} />
+            <Route path='/showroom' element={<ShowRoom />}></Route>
             <Route path='/add-caftan' element={<AddCaftan />} />
           </Routes>
         </main>
