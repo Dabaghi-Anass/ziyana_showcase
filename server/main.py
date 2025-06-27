@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Form, File, UploadFile, HTTPException, Query
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
 from pydantic import BaseModel
 from typing import Optional, List
@@ -18,11 +19,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI(title="Caftan API", description="API for managing caftans and reviews", version="1.0.0")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # === Configurations ===
 # OpenRouter API
 API_KEY = os.getenv("API_KEY")
-print(f"API_KEY: {API_KEY}")  # Debugging line to check if API_KEY is loaded
 MODEL = os.getenv("MODEL", "openai/o4-mini-high")
 
 # MongoDB
@@ -385,6 +391,7 @@ async def get_reviews(
             if "rating" in query:
                 query["rating"]["$lte"] = max_rating
             else:
+
                 query["rating"] = {"$lte": max_rating}
         
         # Calculate pagination

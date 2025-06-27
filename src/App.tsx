@@ -6,12 +6,14 @@ import { NavBar } from './components/nav-bar';
 import { ShowRoom } from './pages/showroom';
 import { StoryPage } from './pages/story';
 import { AddCaftan } from './pages/add-caftan';
+import { FloatingChatbot } from './components/chat-bot';
 
 function App() {
   return (
     <>
       <Router>
         <NavBar />
+        {/* <FloatingChatbot /> */}
         <main className='container'>
           <Routes>
             <Route path='/' element={<HomePage />} />
