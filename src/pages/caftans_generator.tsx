@@ -149,6 +149,7 @@ const VoiceCaftanGenerator = () => {
           occasion,
         }),
       })) as any;
+      console.log('Response:', response);
       let [descption, index] = response.data.bot_response
         .split(',')
         .map((e) => e.trim());

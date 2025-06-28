@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCaftans } from '../api/api';
+import { BASE_URL, getCaftans } from '../api/api';
 import './caftans-page.css';
 type Caftan = {
   _id: string;
@@ -184,7 +184,7 @@ export function CaftansPage() {
                       src={
                         caftan.image_url.startsWith('http')
                           ? caftan.image_url
-                          : `http://localhost:8080${caftan.image_url}`
+                          : `${BASE_URL}${caftan.image_url}`
                       }
                       alt={caftan.caftanName}
                       className='card-image'
