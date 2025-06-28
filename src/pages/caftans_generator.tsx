@@ -175,6 +175,7 @@ const VoiceCaftanGenerator = () => {
         fontFamily: 'Arial, sans-serif',
         color: '#ffffff',
         direction: 'rtl',
+        marginTop: '3rem',
       }}
     >
       {/* Header */}

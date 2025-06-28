@@ -26,7 +26,7 @@ export function NavBar() {
           <Link to='/customize'>قفطان على ذوقي</Link>
         </li>
       </ul>
-      <AppLogo />
+      <img src='/logo.png' className='nav-logo' />
       <Link to='/add-caftan' className='btn'>
         ارفع تصميمك
       </Link>
