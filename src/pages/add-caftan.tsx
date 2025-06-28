@@ -30,7 +30,7 @@ export function AddCaftan() {
     caftanCategory: '',
     caftanDescription: '',
     caftanPublisherName: '',
-    publishedAt: "",
+    publishedAt: '',
     keyWords: [],
     image_url: '',
   });
@@ -122,13 +122,13 @@ export function AddCaftan() {
         });
       }, 200);
       const response = await uploadImage(selectedFile);
-      console.log({ response })
+      console.log({ response });
       clearInterval(progressInterval);
       setUploadProgress(100);
 
       return response.data.file_url;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       alert('حدث خطأ أثناء رفع الصورة');
       return null;
     } finally {
@@ -206,7 +206,7 @@ export function AddCaftan() {
         caftanPublisherName: '',
         keyWords: [],
         image_url: '',
-        publishedAt: ''
+        publishedAt: '',
       });
       setSelectedFile(null);
       setPreviewUrl('');
@@ -218,7 +218,8 @@ export function AddCaftan() {
     } catch (error) {
       console.error('Error creating caftan:', error);
       alert(
-        `حدث خطأ أثناء إنشاء القفطان: ${error instanceof Error ? error.message : 'خطأ غير معروف'
+        `حدث خطأ أثناء إنشاء القفطان: ${
+          error instanceof Error ? error.message : 'خطأ غير معروف'
         }`
       );
     } finally {
@@ -231,7 +232,7 @@ export function AddCaftan() {
   };
 
   return (
-    <div className='caftan-form-container'>
+    <div className='caftan-form-container' style={{ marginTop: '4rem' }}>
       <div className='caftan-form-card'>
         <div className='caftan-form-header'>
           <h1 className='caftan-form-title'>
@@ -274,8 +275,9 @@ export function AddCaftan() {
                 onChange={(e) =>
                   handleInputChange('caftanCategory', e.target.value)
                 }
-                className={`form-select ${errors.caftanCategory ? 'error' : ''
-                  }`}
+                className={`form-select ${
+                  errors.caftanCategory ? 'error' : ''
+                }`}
                 dir='rtl'
               >
                 <option value=''>اختر فئة القفطان</option>
@@ -302,8 +304,9 @@ export function AddCaftan() {
                 onChange={(e) =>
                   handleInputChange('caftanPublisherName', e.target.value)
                 }
-                className={`form-input ${errors.caftanPublisherName ? 'error' : ''
-                  }`}
+                className={`form-input ${
+                  errors.caftanPublisherName ? 'error' : ''
+                }`}
                 placeholder='أدخل اسم الناشر'
                 dir='rtl'
               />
@@ -430,8 +433,9 @@ export function AddCaftan() {
                 onChange={(e) =>
                   handleInputChange('caftanDescription', e.target.value)
                 }
-                className={`form-textarea ${errors.caftanDescription ? 'error' : ''
-                  }`}
+                className={`form-textarea ${
+                  errors.caftanDescription ? 'error' : ''
+                }`}
                 placeholder='أدخل وصفاً مفصلاً للقفطان...'
                 rows={5}
                 dir='rtl'
